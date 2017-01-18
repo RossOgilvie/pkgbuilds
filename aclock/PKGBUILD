@@ -1,0 +1,31 @@
+# Maintainer: Jan Mertens <Jan.JM.Mertens at gmail dot com>
+# Original version
+# url="http://github.com/mertensj/aclock"
+
+pkgname=aclock-ross
+pkgver=17.5253662
+pkgrel=1
+pkgdesc="Analog clock written in GTK3."
+arch=('i686' 'x86_64')
+url="http://github.com/RossOgilvie/aclock"
+license=('GPL')
+depends=('gtk3')
+source=("git+https://git@github.com/RossOgilvie/aclock.git")
+md5sums=("SKIP")
+
+_gitname="aclock"
+
+pkgver() {
+  cd "$srcdir/${_gitname}"
+  echo $(git rev-list --count HEAD).$(git rev-parse --short HEAD)
+}
+
+build() {
+  cd "$srcdir/$_gitname/src"
+  make
+}
+
+package() {
+  cd "$srcdir/$_gitname/src"
+  install -Dm 755 $_gitname "$pkgdir/usr/bin/$_gitname"
+}

@@ -1,0 +1,31 @@
+# Maintainer: Ross Ogilvie <ross@rossogilvie.id.au>
+
+pkgname=tex-gyre-fonts-math
+pkgver=0.1
+pkgrel=1
+pkgdesc="The math part sof the Tex Gyre font family"
+arch=(any)
+url="http://www.gust.org.pl/projects/e-foundry/tg-math"
+license=(custom)
+depends=(fontconfig)
+install=fonts.install
+source=($url/download/texgyretermes-math-1543.zip
+        $url/download/texgyreschola-math-1533.zip
+        $url/download/texgyrepagella-math-1632.zip
+        $url/download/texgyrebonum-math-1005.zip
+        $url/../licenses/GUST-FONT-LICENSE.txt)
+
+package() {
+  install -d "$pkgdir/usr/share/fonts/tex-gyre"
+  install -t "$pkgdir/usr/share/fonts/tex-gyre" -m644 "texgyretermes-math-1543/opentype/texgyretermes-math.otf"
+  install -t "$pkgdir/usr/share/fonts/tex-gyre" -m644 "texgyreschola-math-1533/opentype/texgyreschola-math.otf"
+  install -t "$pkgdir/usr/share/fonts/tex-gyre" -m644 "texgyrepagella-math-1632/opentype/texgyrepagella-math.otf"
+  install -t "$pkgdir/usr/share/fonts/tex-gyre" -m644 "texgyrebonum-math-1005/opentype/texgyrebonum-math.otf"
+  install -Dm644 GUST-FONT-LICENSE.txt "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+}
+
+sha256sums=('5875b39d3987cbe4258e5933a2292fbece870177053c5a8f495492769e2d4bb2'
+            '53560861144138e25f89f1f487126d21c81c5086364ffcf2c8e5e46e37ebbe00'
+            '68a9c0ce195915334673960b13a281f24d31a8ae380454a0e35652dba506d474'
+            '8f8dc6f52ff838201f581f20b4ab634508e6d4b1e2745fe5d6b7732e1df73290'
+            'a746108477b2fa685845e7596b7ad8342bc358704b2b7da355f2df0a0cb8ad85')
